@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portal de Estudiantes</title>
+    <style>
+        /* Estilos generales */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            margin: 0;
+            padding: 0;
+            color: #333;
+        }
+        header {
+            background-color: #4CAF50;
+            padding: 20px;
+            text-align: center;
+            color: white;
+        }
+        header img {
+            height: 40px;
+            vertical-align: middle;
+        }
+        h2 {
+            margin-top: 10px;
+        }
+        .login-container, .profile-container, .change-password-container, .personal-data-container {
+            width: 300px;
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin: 20px auto;
+        }
+        .login-container input, .profile-container input, .change-password-container input, .personal-data-container input {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        .menu {
+            display: flex;
+            justify-content: space-around;
+            background-color: #333;
+            padding: 10px 0;
+            margin-top: 20px;
+        }
+        .menu a {
+            color: white;
+            text-decoration: none;
+            padding: 10px 20px;
+            font-size: 16px;
+        }
+        .menu a:hover {
+            background-color: #4CAF50;
+        }
+        .section {
+            padding: 20px;
+            background-color: white;
+            margin: 20px auto;
+            width: 90%;
+            max-width: 1000px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        table, th, td {
+            border: 1px solid #ddd;
+        }
+        th, td {
+            padding: 10px;
+            text-align: left;
+        }
+        .message {
+            color: red;
+        }
+        header {
+            background-color: #4CAF50;
+            padding: 20px;
+            text-align: center;
+            color: white;
+        }
+        
+        header h2 {
+            margin-top: 10px;
+        }
+        
+        header .contact-info {
+            margin-top: 20px;
+            font-size: 14px;
+        }
+        
+        header .contact-info p {
+            margin: 5px 0;
+        }
+        
+        header .contact-info a {
+            color: #ffffff;
+            text-decoration: none;
+        }
+        
+        header .contact-info a:hover {
+            text-decoration: underline;
+        }
+        
+    </style>
+</head>
+<body>
+
+    <header>
+        <h2>TECNOLÓGICO DE ESTUDIOS SUPERIORES DE CHIMALHUACÁN</h2>
+        <p>Sistema de Información Integral Administrativa (SIIA)</p>
+        <div class="contact-info">
+            <p><strong>Dirección:</strong> C.Primavera S/N, Col. Santa María Nativitas, Chimalhuacán, Estado de México, C.P. 56330</p>
+            <p><strong>Teléfonos:</strong> (55) 50-44-70-20, 50-44-41-31, 58-53-72-93, 58-52-74-26</p>
+            <p><strong>Email:</strong> <a href="mailto:webmaster@teschi.edu.mx">webmaster@teschi.edu.mx</a></p>
+        </div>
+    </header>
+    
+
+    <!-- Formulario de inicio de sesión -->
+    <div class="login-container" id="login-container">
+        <h3>Iniciar sesión</h3>
+        <input type="text" id="matricula" placeholder="Matrícula" required>
+        <input type="password" id="password" placeholder="Contraseña" required>
+        <button onclick="iniciarSesion()">Iniciar sesión</button>
+        <div class="message" id="message"></div>
+    </div>
+
+    <!-- Perfil del estudiante -->
+    <div class="profile-container" id="profile-container" style="display: none;">
+        <h2>Bienvenido, <span id="nombre"></span></h2>
+        <p><strong>Matrícula:</strong> <span id="matricula-display"></span></p>
+        <p><strong>Nombre:</strong> <input type="text" id="nombre-input" disabled></p>
+        <p><strong>Promedio:</strong> <input type="text" id="promedio-input" disabled></p>
+    </div>
+
+    <!-- Menú de navegación -->
+    <div class="menu" id="menu" style="display: none;">
+        <a href="#" onclick="mostrarSeccion('reportes')">Reportes</a>
+        <a href="#" onclick="mostrarSeccion('usuario')">Usuario</a>
+        <a href="#" onclick="salir()">Salir</a>
+    </div>
+
+    <!-- Sección de Reportes -->
+    <div class="section" id="reportes-section" style="display: none;">
+        <h3>Reportes</h3>
+        <button onclick="mostrarSubseccion('calificaciones')">Calificaciones Parciales</button>
+        <button onclick="mostrarSubseccion('historial')">Historial Académico</button>
+        <button onclick="mostrarSubseccion('materias')">Tira de Materias</button>
+    </div>
+
+    <!-- Calificaciones Parciales -->
+    <div class="section" id="calificaciones-section" style="display: none;">
+        <h3>Calificaciones Parciales - 2024-2</h3>
+        <table>
+            <tr>
+                <th>N°</th>
+                <th>Docente</th>
+                <th>Materia</th>
+                <th>Primer Parcial</th>
+                <th>Segundo Parcial</th>
+                <th>Tercer Parcial</th>
+                <th>Grupo</th>
+            </tr>
+            <tr>
+                <td>1</td>
+                <td>SANCHEZ DIAZ BERNARDINO</td>
+                <td>CÁLCULO VECTORIAL</td>
+                <td>65</td>
+                <td>70</td>
+                <td>-</td>
+                <td>3ISC21</td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td>MALCON PEÑA ANUAR</td>
+                <td>CULTURA EMPRESARIAL</td>
+                <td>85.7</td>
+                <td>79</td>
+                <td>-</td>
+                <td>3ISC21</td>
+            </tr>
+            <tr>
+                <td>3</td>
+                <td>TUN CAUICH LUCIO</td>
+                <td>DESARROLLO SUSTENTABLE</td>
+                <td>100</td>
+                <td>100</td>
+                <td>-</td>
+                <td>3ISC21</td>
+            </tr>
+            <tr>
+                <td>4</td>
+                <td>LOPEZ NAVEZ RENE VICTORINO</td>
+                <td>ESTRUCTURA DE DATOS</td>
+                <td>90</td>
+                <td>92</td>
+                <td>-</td>
+                <td>3ISC21</td>
+            </tr>
+            <tr>
+                <td>5</td>
+                <td>SOLIS PEREZ SHARON</td>
+                <td>FÍSICA GENERAL</td>
+                <td>100</td>
+                <td>100</td>
+                <td>-</td>
+                <td>3ISC21</td>
+            </tr>
+            <tr>
+                <td>6</td>
+                <td>BUCIO ESQUIVEL JUAN</td>
+                <td>INVESTIGACIÓN DE OPERACIONES</td>
+                <td>83</td>
+                <td>70</td>
+                <td>-</td>
+                <td>3ISC21</td>
+            </tr>
+        </table>
+    </div>
+
+    <!-- Historial Académico -->
+    <div class="section" id="historial-section" style="display: none;">
+        <h3>Historial Académico</h3>
+        <p>Para acceder a más detalles, puedes consultar el siguiente enlace:</p>
+        <a href="https://drive.google.com/file/d/1Ov1ye4LKOx5kKAmgO52KEy9rKVgXfcMb/view" target="_blank">Ver Historial Académico</a>
+    </div>
+
+    <!-- Tira de Materias -->
+    <div class="section" id="materias-section" style="display: none;">
+        <h3>Tira de Materias</h3>
+        <p><strong>TESCHI</strong></p>
+        <p>No ha hecho el registro de sus materias, por favor realícelo desde el menú de "Registro/Reinscripción". Gracias.</p>
+    </div>
+
+    <!-- Sección de Usuario -->
+    <div class="section" id="usuario-section" style="display: none;">
+        <h3>Usuario</h3>
+        <button onclick="mostrarSubseccion('cambio-password')">Cambio de Contraseña</button>
+        <button onclick="mostrarSubseccion('datos-personales')">Datos Personales</button>
+    </div>
+
+    <!-- Cambio de Contraseña -->
+    <div class="section" id="cambio-password-section" style="display: none;">
+        <h3>Cambio de Contraseña</h3>
+        <p><strong>Datos Actuales</strong></p>
+        <p><strong>Usuario:</strong> Usuario</p>
+        <p><strong>Password:</strong> <input type="password" id="current-password" placeholder="Contraseña Actual"></p>
+        <p><strong>Nuevos Datos</strong></p>
+        <p><strong>Nuevo Password:</strong> <input type="password" id="new-password" placeholder="Nuevo Password"></p>
+        <p><strong>Confirmar Password:</strong> <input type="password" id="confirm-password" placeholder="Confirmar Password"></p>
+        <button onclick="cambiarPassword()">Cambiar Contraseña</button>
+    </div>
+
+    <!-- Datos Personales -->
+    <div class="section" id="datos-personales-section" style="display: none;">
+        <h3>Actualización de Datos Personales</h3>
+        <form>
+            <label>Alumno</label><input type="text" value="FATIMA JOLETTE GONZALEZ RODRIGUEZ" disabled><br>
+            <label>Nombre</label><input type="text" value="FATIMA JOLETTE" disabled><br>
+            <label>Apellido Paterno</label><input type="text" value="GONZALEZ" disabled><br>
+            <label>Apellido Materno</label><input type="text" value="RODRIGUEZ" disabled><br>
+            <label>CURP</label><input type="text" value="GORF050717MGRNDTA6" disabled><br>
+            <!-- Agregar el resto de los datos según el formato proporcionado -->
+            <button type="submit">Enviar</button>
+        </form>
+    </div>
+
+    <script>
+        // Datos de ejemplo
+        const usuarios = {
+            "2023452109": {
+                nombre: "FATIMA JOLETTE GONZALEZ RODRIGUEZ",
+                promedio: "86.75",
+                password: "12345"
+            }
+        };
+
+        function iniciarSesion() {
+            const matricula = document.getElementById("matricula").value;
+            const password = document.getElementById("password").value;
+
+            if (usuarios[matricula] && usuarios[matricula].password === password) {
+                document.getElementById("login-container").style.display = "none";
+                document.getElementById("profile-container").style.display = "block";
+                document.getElementById("nombre").innerText = usuarios[matricula].nombre;
+                document.getElementById("matricula-display").innerText = matricula;
+                document.getElementById("nombre-input").value = usuarios[matricula].nombre;
+                document.getElementById("promedio-input").value = usuarios[matricula].promedio;
+                document.getElementById("menu").style.display = "flex";
+            } else {
+                document.getElementById("message").innerText = "Matrícula o contraseña incorrectos.";
+            }
+        }
+
+        function mostrarSeccion(seccion) {
+            document.getElementById("reportes-section").style.display = "none";
+            document.getElementById("usuario-section").style.display = "none";
+            document.getElementById("calificaciones-section").style.display = "none";
+            document.getElementById("historial-section").style.display = "none";
+            document.getElementById("materias-section").style.display = "none";
+            document.getElementById("cambio-password-section").style.display = "none";
+            document.getElementById("datos-personales-section").style.display = "none";
+            
+            document.getElementById(seccion + "-section").style.display = "block";
+        }
+
+        function mostrarSubseccion(subseccion) {
+            document.getElementById("calificaciones-section").style.display = "none";
+            document.getElementById("historial-section").style.display = "none";
+            document.getElementById("materias-section").style.display = "none";
+            document.getElementById("cambio-password-section").style.display = "none";
+            document.getElementById("datos-personales-section").style.display = "none";
+
+            document.getElementById(subseccion + "-section").style.display = "block";
+        }
+
+        function cambiarPassword() {
+            const newPassword = document.getElementById("new-password").value;
+            const confirmPassword = document.getElementById("confirm-password").value;
+
+            if (newPassword === confirmPassword) {
+                alert("Contraseña cambiada exitosamente.");
+            } else {
+                alert("Las contraseñas no coinciden.");
+            }
+        }
+
+        function salir() {
+            alert("Has cerrado sesión.");
+            location.reload();
+        }
+    </script>
+    
+</body>
+</html>
+
